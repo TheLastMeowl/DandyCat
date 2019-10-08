@@ -33,11 +33,30 @@ myBot.makeMove = function() {
     * Scene Width: 800
     * Scene Height: 480
     */
-  if (myBot.distanceFrom(opponent) > 150) {
-    myBot.jumpToward(opponent, 7);
+   if (myBot.distanceFrom(opponent) > 300) {
+    myBot.dashToward(opponent, 5);
   }
+  else if (myBot.distanceFrom(opponent) > 150 && opponent.isAlive() && !myBot.isBelow(opponent)) {
+    myBot.jumpToward(opponent, 11);
+  }
+  else if (opponent.isMovingDown() && opponent.isMovingToward(this) && opponent.isAlive() && myBot.getX() > 740)
+  {
+    myBot.dashLeft(6)
+  }
+  else if (opponent.isMovingDown() && opponent.isMovingToward(this) && opponent.isAlive() && myBot.getX() < 60)
+  {
+    myBot.dashRight(6)
+  }
+  else if (opponent.isMovingDown() && opponent.isMovingToward(this) && && opponent.isAlive() && myBot.xDistanceFrom(opponent) < 110)
+  {
+    myBot.dashAway(opponent,7)
+  }
+  else if (!opponent.isAlive() && myBot.xDistanceFrom(opponent) < 200 && myBot.yDistanceFrom(opponent) < 150)
+  {
+    myBot.dashAway(opponent,7)
+  }
+
   else {
-    myBot.dashAwayFrom(opponent, 10);
   }
 };
 
